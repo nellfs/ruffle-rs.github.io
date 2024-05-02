@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Script from "next/script";
-import classes from "../app/index.module.css";
+import classes from "../app/[locale]/index.module.css";
 
 declare global {
   interface Window {

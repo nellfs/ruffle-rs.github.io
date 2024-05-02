@@ -10,7 +10,7 @@ import { useDeviceSelectors } from "react-device-detect";
 import classes from "./index.module.css";
 import { Button, Group } from "@mantine/core";
 import Link from "next/link";
-import { allLinks, CurrentDevice, GithubRelease } from "@/app/downloads/config";
+import { CurrentDevice, GithubRelease, allLinks } from "./downloads/config";
 
 interface RecommendedDownload {
   icon: React.ExoticComponent<React.RefAttributes<Icon>>;

@@ -5,6 +5,13 @@ import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { cssResolver, theme } from "@/theme";
 import { Header } from "@/components/header";
 import { FooterSocial } from "@/components/footer";
+import { unstable_setRequestLocale } from "next-intl/server";
+
+const locales = ['en', 'pt-BR'];
+ 
+export function generateStaticParams() {
+  return locales.map((locale) => ({locale}));
+}
 
 export const metadata: Metadata = {
   title: "Ruffle - Flash Emulator",
@@ -26,11 +33,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: {locale}
 }: {
   children: React.ReactNode;
+  params: {locale: string};
 }) {
+  unstable_setRequestLocale(locale);
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <head>
         <ColorSchemeScript />
         {/*<link rel="shortcut icon" href="/favicon.svg" />*/}

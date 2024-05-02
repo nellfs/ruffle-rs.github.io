@@ -8,7 +8,7 @@ import {
   maxNightlies,
   ReleaseDownloads,
   repository,
-} from "@/app/downloads/config";
+} from "./config";
 import { Octokit } from "octokit";
 import { RestEndpointMethodTypes } from "@octokit/plugin-rest-endpoint-methods";
 import { parse } from "node-html-parser";

@@ -12,9 +12,11 @@ import {
 import Image from "next/image";
 import { IconCheck } from "@tabler/icons-react";
 import React from "react";
-import { getLatestReleases } from "@/app/downloads/github";
+import { getLatestReleases } from "./downloads/github";
+import { useTranslations } from "next-intl";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
-const InteractiveLogo = dynamic(() => import("../components/logo"), {
+const InteractiveLogo = dynamic(() => import("../../components/logo"), {
   ssr: false,
 });
 
@@ -22,9 +24,11 @@ const Installers = dynamic(() => import("./installers"), {
   ssr: false,
 });
 
-export default async function Home() {
+export default async function Home({ params: { locale } }: { params: { locale: string } }) {
   const releases = await getLatestReleases();
   const latest = releases.length > 0 ? releases[0] : null;
+  unstable_setRequestLocale(locale);
+  const t = await getTranslations('Index');
 
   return (
     <Container size="xl" className={classes.container}>
@@ -32,7 +36,7 @@ export default async function Home() {
 
       <Container size="md">
         <Title className={classes.title}>
-          An open source Flash Player emulator
+          {t("title")}
         </Title>
         <div className={classes.hero}>
           <Image
